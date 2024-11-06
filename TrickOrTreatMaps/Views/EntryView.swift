@@ -16,25 +16,34 @@ struct EntryView: View {
                     .resizable()
                     .scaledToFit()
                     .frame(width: 100, height: 100)
-                    .foregroundColor(.blue)
+                    .foregroundColor(.orange)
 
-                Text("Welcome to TrickOrTreatMaps")
-                    .font(.largeTitle)
+                Text("Welcome to TrickOrTreatMaps!")
+                    .font(.title)
                     .fontWeight(.bold)
                     .multilineTextAlignment(.center)
 
-                Text("Start your Halloween journey and explore the best routes for trick-or-treating!")
+                Text("Sign up as a user or let people know you'll be handing out candy!")
                     .font(.body)
                     .foregroundColor(.gray)
                     .multilineTextAlignment(.center)
                     .padding(.horizontal)
 
-                NavigationLink(destination: MainView()) {
-                    Text("Get Started")
+                NavigationLink(destination: UserSignUpView()) {
+                    Text("User")
                         .font(.headline)
                         .foregroundColor(.white)
-                        .frame(width: 200, height: 50)
+                        .frame(width: 250, height: 50)
                         .background(Color.blue)
+                        .cornerRadius(10)
+                }
+
+                NavigationLink(destination: CandyGiverSignUpView()) {
+                    Text("Handing Out Candy")
+                        .font(.headline)
+                        .foregroundColor(.white)
+                        .frame(width: 250, height: 50)
+                        .background(Color.purple)
                         .cornerRadius(10)
                 }
             }

@@ -8,11 +8,11 @@
 import UIKit
 import CoreLocation
 
-class ViewController: UIViewController {
+public class ViewController: UIViewController {
 
     var locationManager: CLLocationManager?
     
-    override func viewDidLoad() {
+    override public func viewDidLoad() {
         super.viewDidLoad()
         locationManager = CLLocationManager()
         locationManager?.delegate = self
@@ -22,7 +22,7 @@ class ViewController: UIViewController {
 }
 
 extension ViewController: CLLocationManagerDelegate {
-    func locationManagerDidChangeAuthorization(_ manager: CLLocationManager) {
+    public func locationManagerDidChangeAuthorization(_ manager: CLLocationManager) {
         switch manager.authorizationStatus {
         case .notDetermined:
             print("When user did not yet determined")
