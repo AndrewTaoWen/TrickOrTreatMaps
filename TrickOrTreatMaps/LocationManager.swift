@@ -9,35 +9,29 @@ import Foundation
 import UIKit
 import CoreLocation
 
-class LocationManager: NSObject, CLLocationManagerDelegate {
-    private let locationManager = CLLocationManager()
+class LocationManager: NSObject, ObservableObject, CLLocationManagerDelegate {
+    private let manager = CLLocationManager()
+    @Published var userLocation: CLLocationCoordinate2D?
     
     override init() {
         super.init()
-        setupLocationManager()
+        manager.delegate = self
+        manager.desiredAccuracy = kCLLocationAccuracyBest
     }
     
-    private func setupLocationManager() {
-        locationManager.delegate = self
-        locationManager.desiredAccuracy = kCLLocationAccuracyBest
-        locationManager.requestWhenInUseAuthorization()
-    }
-    
-    func startTracking() {
-        locationManager.startUpdatingLocation()
-    }
-    
-    func stopTracking() {
-        locationManager.stopUpdatingLocation()
+    func requestLocation() {
+        manager.requestWhenInUseAuthorization()
+        manager.startUpdatingLocation()
     }
     
     func locationManager(_ manager: CLLocationManager, didUpdateLocations locations: [CLLocation]) {
-        guard let location = locations.last else { return }
-        
-        print("User's location: \(location.coordinate.latitude), \(location.coordinate.longitude)")
+        guard let newLocation = locations.last else { return }
+        DispatchQueue.main.async {
+            self.userLocation = newLocation.coordinate
+        }
     }
     
     func locationManager(_ manager: CLLocationManager, didFailWithError error: Error) {
-        print("Failed to get user location: \(error.localizedDescription)")
+        print("Failed to get location: \(error)")
     }
 }
