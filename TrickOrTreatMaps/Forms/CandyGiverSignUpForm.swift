@@ -1,5 +1,6 @@
 import SwiftUI
 import MapKit
+import FirebaseAuth
 
 struct CandyGiverSignUpForm: View {
     @State private var name: String = ""
@@ -77,15 +78,26 @@ struct CandyGiverSignUpForm: View {
                 }
             }
             
-            Button(action: authenticate) {
-                Text("Authenticate")
-                    .bold()
-                    .frame(maxWidth: .infinity)
-                    .padding()
-                    .background(Color.green)
-                    .foregroundColor(.white)
-                    .cornerRadius(8)
+            Button("Sign Up") {
+                if name.isEmpty || email.isEmpty || password.isEmpty || address.isEmpty {
+                    isShowingError = true
+                    errorMessage = "Please fill in all fields."
+                } else {
+                    AuthService.shared.signUp(name: name, email: email, password: password, userType: "giver", candyTypes: selectedCandyOptions, address: address) { result in
+                        switch result {
+                        case .success:
+                            errorMessage = "Account created successfully!"
+                            isShowingError = false
+                        case .failure(let error):
+                            errorMessage = error.localizedDescription
+                            print(errorMessage)
+                            isShowingError = true
+                        }
+                    }
+                }
             }
+
+            
             Text("This is to ensure your safety and the safety of others.")
                 .font(.footnote)
                 .foregroundColor(.gray)
@@ -108,17 +120,6 @@ struct CandyGiverSignUpForm: View {
             selectedCandyOptions.removeAll { $0 == option }
         } else {
             selectedCandyOptions.append(option)
-        }
-    }
-    
-    func authenticate() {
-        if name.isEmpty || email.isEmpty || password.isEmpty || address.isEmpty || selectedCandy.isEmpty {
-            isShowingError = true
-            errorMessage = "Please fill in all fields."
-        } else {
-            // Call authentication service here
-            isShowingError = false
-            // Proceed with actual sign-up logic
         }
     }
 }
