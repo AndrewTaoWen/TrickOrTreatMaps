@@ -7,6 +7,7 @@
 
 import Foundation
 import SwiftUI
+import FirebaseAuth
 
 struct EntryView: View {
     var body: some View {
@@ -54,8 +55,21 @@ struct EntryView: View {
 }
 
 struct MainView: View {
+    @State private var isSignedIn = Auth.auth().currentUser != nil
+    
     var body: some View {
-        ContentView()
+        Group {
+            if isSignedIn {
+                ContentView()
+            } else {
+                EntryView()
+            }
+        }
+        .onAppear {
+            Auth.auth().addStateDidChangeListener { _, user in
+                self.isSignedIn = user != nil
+            }
+        }
     }
 }
 

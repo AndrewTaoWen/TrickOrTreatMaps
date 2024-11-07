@@ -35,16 +35,25 @@ struct UserSignInForm: View {
                 .cornerRadius(8)
                 .textContentType(.password)
             
-            Button(action: signIn) {
-                Text("Sign In")
-                    .bold()
-                    .frame(maxWidth: .infinity)
-                    .padding()
-                    .background(Color.blue)
-                    .foregroundColor(.white)
-                    .cornerRadius(8)
+            Button("Sign In") {
+                AuthService.shared.signIn(email: email, password: password) { result in
+                    switch result {
+                    case .success:
+                        errorMessage = ""
+                        isShowingError = false
+                    case .failure(let error):
+                        errorMessage = error.localizedDescription
+                        isShowingError = true
+                    }
+                }
             }
             .padding(.top, 20)
+            .bold()
+            .frame(maxWidth: .infinity)
+            .padding()
+            .background(Color.blue)
+            .foregroundColor(.white)
+            .cornerRadius(8)
             
             if isShowingError {
                 Text(errorMessage)
@@ -53,18 +62,6 @@ struct UserSignInForm: View {
             }
         }
         .padding()
-    }
-    
-    // Sign In Function
-    func signIn() {
-        if email.isEmpty || password.isEmpty {
-            isShowingError = true
-            errorMessage = "Please fill in all fields."
-        } else {
-            // Call sign-in service here
-            isShowingError = false
-            // Proceed with actual sign-in logic
-        }
     }
 }
 

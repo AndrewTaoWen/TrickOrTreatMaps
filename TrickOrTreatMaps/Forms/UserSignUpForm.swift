@@ -6,8 +6,6 @@ struct UserSignUpForm: View {
     @State private var email: String = ""
     @State private var password: String = ""
     @State private var address: String = ""
-    @State private var selectedCandy: String = ""
-    @State private var selectedCandyOptions: [String] = []
     @State private var isShowingError: Bool = false
     @State private var errorMessage: String = ""
     @State private var searchCompleter = MKLocalSearchCompleter()
@@ -63,15 +61,25 @@ struct UserSignUpForm: View {
                 }
             }
             
-            Button(action: authenticate) {
-                Text("Authenticate")
-                    .bold()
-                    .frame(maxWidth: .infinity)
-                    .padding()
-                    .background(Color.green)
-                    .foregroundColor(.white)
-                    .cornerRadius(8)
+            Button("Sign Up") {
+                if name.isEmpty || email.isEmpty || password.isEmpty || address.isEmpty {
+                    isShowingError = true
+                    errorMessage = "Please fill in all fields."
+                } else {
+                    AuthService.shared.signUp(name: name, email: email, password: password, userType: "treater", candyTypes: [], address: address) { result in
+                        switch result {
+                        case .success:
+                            errorMessage = "Account created successfully!"
+                            isShowingError = false
+                        case .failure(let error):
+                            errorMessage = error.localizedDescription
+                            print(errorMessage)
+                            isShowingError = true
+                        }
+                    }
+                }
             }
+            
             Text("This is to ensure your safety and the safety of others.")
                 .font(.footnote)
                 .foregroundColor(.gray)
@@ -87,17 +95,6 @@ struct UserSignUpForm: View {
     
     func updateAddressSuggestions() {
             searchCompleter.queryFragment = address
-    }
-    
-    func authenticate() {
-        if name.isEmpty || email.isEmpty || password.isEmpty || address.isEmpty || selectedCandy.isEmpty {
-            isShowingError = true
-            errorMessage = "Please fill in all fields."
-        } else {
-            // Call authentication service here
-            isShowingError = false
-            // Proceed with actual sign-up logic
-        }
     }
 }
 
