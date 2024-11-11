@@ -58,23 +58,24 @@ struct MainView: View {
     @State private var isSignedIn = Auth.auth().currentUser != nil
     
     var body: some View {
-        Group {
-            if isSignedIn {
-                ContentView()
-            } else {
-                EntryView()
-            }
-        }
-        .onAppear {
-            Auth.auth().addStateDidChangeListener { _, user in
-                self.isSignedIn = user != nil
-            }
-        }
+//        Group {
+//            if isSignedIn {
+//                ContentView()
+//            } else {
+//                EntryView()
+//            }
+//        }
+//        .onAppear {
+//            Auth.auth().addStateDidChangeListener { _, user in
+//                self.isSignedIn = user != nil
+//            }
+//        }
+        EntryView()
     }
 }
 
-struct EntryView_Previews: PreviewProvider {
+struct MainView_Previews: PreviewProvider {
     static var previews: some View {
-        EntryView()
+        MainView()
     }
 }
