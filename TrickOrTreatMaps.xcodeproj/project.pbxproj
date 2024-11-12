@@ -11,6 +11,7 @@
 		E164D8C42CDBFF2B00C66808 /* FirebaseAuth in Frameworks */ = {isa = PBXBuildFile; productRef = E164D8C32CDBFF2B00C66808 /* FirebaseAuth */; };
 		E164D8C82CDC008B00C66808 /* FirebaseFirestore in Frameworks */ = {isa = PBXBuildFile; productRef = E164D8C72CDC008B00C66808 /* FirebaseFirestore */; };
 		E164D8CA2CDC00AA00C66808 /* FirebaseFirestoreCombine-Community in Frameworks */ = {isa = PBXBuildFile; productRef = E164D8C92CDC00AA00C66808 /* FirebaseFirestoreCombine-Community */; };
+		E164D9882CE2D4F900C66808 /* swift.gitignore in Resources */ = {isa = PBXBuildFile; fileRef = E164D9872CE2D4EF00C66808 /* swift.gitignore */; };
 /* End PBXBuildFile section */
 
 /* Begin PBXContainerItemProxy section */
@@ -31,6 +32,7 @@
 /* End PBXContainerItemProxy section */
 
 /* Begin PBXFileReference section */
+		E164D9872CE2D4EF00C66808 /* swift.gitignore */ = {isa = PBXFileReference; lastKnownFileType = text; path = swift.gitignore; sourceTree = "<group>"; };
 		E16E61E62CD99C0400B32C7C /* TrickOrTreatMaps.app */ = {isa = PBXFileReference; explicitFileType = wrapper.application; includeInIndex = 0; path = TrickOrTreatMaps.app; sourceTree = BUILT_PRODUCTS_DIR; };
 		E16E61F62CD99C0500B32C7C /* TrickOrTreatMapsTests.xctest */ = {isa = PBXFileReference; explicitFileType = wrapper.cfbundle; includeInIndex = 0; path = TrickOrTreatMapsTests.xctest; sourceTree = BUILT_PRODUCTS_DIR; };
 		E16E62002CD99C0500B32C7C /* TrickOrTreatMapsUITests.xctest */ = {isa = PBXFileReference; explicitFileType = wrapper.cfbundle; includeInIndex = 0; path = TrickOrTreatMapsUITests.xctest; sourceTree = BUILT_PRODUCTS_DIR; };
@@ -99,6 +101,7 @@
 		E16E61DD2CD99C0400B32C7C = {
 			isa = PBXGroup;
 			children = (
+				E164D9872CE2D4EF00C66808 /* swift.gitignore */,
 				E16E61E82CD99C0400B32C7C /* TrickOrTreatMaps */,
 				E16E61F92CD99C0500B32C7C /* TrickOrTreatMapsTests */,
 				E16E62032CD99C0500B32C7C /* TrickOrTreatMapsUITests */,
@@ -243,6 +246,7 @@
 			isa = PBXResourcesBuildPhase;
 			buildActionMask = 2147483647;
 			files = (
+				E164D9882CE2D4F900C66808 /* swift.gitignore in Resources */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};
