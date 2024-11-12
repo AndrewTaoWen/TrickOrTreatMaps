@@ -1,0 +1,85 @@
+# Xcode
+DerivedData/
+*.xcworkspace
+!shared.xcworkspace/contents.xcworkspacedata
+xcuserdata/
+*.xcodeproj/*
+!*.xcodeproj/project.pbxproj
+!*.xcodeproj/xcshareddata/
+!*.xcassets
+!*.xcodeproj/xcshareddata/xcschemes/*.xcscheme
+*.moved-aside
+*.xcuserstate
+*.xcscmblueprint
+
+# Swift Package Manager
+.build/
+.swiftpm/
+
+# CocoaPods
+Pods/
+*.lock
+*.xcconfig
+
+# Carthage
+Carthage/Build/
+
+# Accio dependency manager
+Dependencies/
+
+# fastlane
+fastlane/report.xml
+fastlane/Preview.html
+fastlane/screenshots
+fastlane/test_output
+
+# Bundle artifacts
+*.ipa
+*.dSYM.zip
+*.dSYM
+
+# Temporary files
+*.tmp
+*.swp
+*~
+
+# Build artifacts
+*.o
+*.a
+*.d
+*.bin
+*.bbl
+*.aux
+*.log
+*.out
+*.toc
+*.blg
+*.nav
+*.snm
+*.vrb
+*.synctex.gz
+
+# Apple-specific files
+.DS_Store
+.AppleDouble
+.LSOverride
+
+# Firebase specific
+GoogleService-Info.plist
+FirebaseAnalytics/
+
+# iOS specific
+*.app
+*.appex
+*.ipa
+*.dSYM
+
+# Swift Package Manager
+.build/
+
+# Swift Playgrounds
+timeline.xctimeline
+playground.xcworkspace
+
+# Generated Source Packages
+Sources/**/__Generated/
